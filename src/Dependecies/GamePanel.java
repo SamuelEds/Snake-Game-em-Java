@@ -79,30 +79,35 @@ public class GamePanel extends JPanel implements ActionListener {
      * */
     public void draw(Graphics g){
         
-        for(int i = 0; i < (SCREEN_HEIGHT / UNIT_SIZE); i++){
-            
-            g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
-            g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDHT, i * UNIT_SIZE);
-            
-        }
-        
-        // Desenhar a maçã em um quadrado da tela.
-        g.setColor(Color.red);
-        g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
-        
-        // Desenhar a Snake.
-        for(int i = 0; i < bodyParts; i++){
-            
-            if (i == 0){
-            
-                g.setColor(Color.green);
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
-            
-            }else{
-                g.setColor(new Color(45, 180, 0));
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+        if(running){
+            for(int i = 0; i < (SCREEN_HEIGHT / UNIT_SIZE); i++){
+
+                g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
+                g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDHT, i * UNIT_SIZE);
+
+            }
+
+            // Desenhar a maçã em um quadrado da tela.
+            g.setColor(Color.red);
+            g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
+
+            // Desenhar a Snake.
+            for(int i = 0; i < bodyParts; i++){
+
+                if (i == 0){
+
+                    g.setColor(Color.green);
+                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+
+                }else{
+                    g.setColor(new Color(45, 180, 0));
+                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                }
+
             }
             
+        }else{
+            gameOver(g);
         }
     }
     
@@ -214,7 +219,20 @@ public class GamePanel extends JPanel implements ActionListener {
         
     }
     
+    /**
+     * Processar o GameOver do jogo.
+     * @param g Desenhar o GameOver na tela.
+     */
     public void gameOver(Graphics g){
+        
+        // Definir uma mensagem de GameOver.
+        g.setColor(Color.red);
+        g.setFont(new Font("Ink Free", Font.BOLD, 75));
+        
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        
+        // Centralizar texto.
+        g.drawString("Game Over", (SCREEN_WIDHT - metrics.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 2);
         
     }
     
