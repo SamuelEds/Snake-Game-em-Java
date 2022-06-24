@@ -35,7 +35,10 @@ public class GamePanel extends JPanel implements ActionListener {
     Timer timer;
     Random random;
     
-    // Confiiguração ao iniciar com o painel.
+    /**
+     * 
+     * Confiiguração ao iniciar com o painel.
+     * */
     public GamePanel(){
         
         random = new Random();
@@ -50,6 +53,9 @@ public class GamePanel extends JPanel implements ActionListener {
     
     }
     
+    /**
+     * Iniciar jogo.
+     */
     public void StartGame(){
         
         newApple();
@@ -67,7 +73,10 @@ public class GamePanel extends JPanel implements ActionListener {
     
     }
     
-    // Desenhar na tela.
+    /**
+     * 
+     * Desenhar objetos na tela.
+     * */
     public void draw(Graphics g){
         
         for(int i = 0; i < (SCREEN_HEIGHT / UNIT_SIZE); i++){
@@ -97,7 +106,9 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
     
-    // Gerar uma nova maçã em uma coordenada aleatória.
+    /**
+     * Gerar uma nova maçã em uma coordenada aleatória.
+     * */
     public void newApple(){
         
         // Garantir que será gerada dentro da tela nos quadrados disponíveis.
@@ -106,6 +117,9 @@ public class GamePanel extends JPanel implements ActionListener {
         
     }
     
+    /**
+     * Movimentar a Snake.
+     */
     public void move(){
         
         for(int i = bodyParts; i > 0; i--){
@@ -139,11 +153,30 @@ public class GamePanel extends JPanel implements ActionListener {
         
     }
     
+    /** 
+     * Checar a colisão com a maçã.
+     * */
     public void checkApple(){
+        
+        if((x[0] == appleX) && (y[0] == appleY)){
+            
+            // Crescer a parte do corpo da Snake.
+            bodyParts++;
+            
+            // Pontuar.
+            applesEaten++;
+            
+            // Gerar nova maçã.
+            newApple();
+            
+        }
         
     }
     
-    // Checar colisões.
+    /**
+     * 
+     * Checar colisões.
+     * */
     public void checkCollisions(){
         
         for(int i = bodyParts; i > 0; i--){
