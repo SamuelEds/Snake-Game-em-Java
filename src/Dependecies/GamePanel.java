@@ -106,6 +106,16 @@ public class GamePanel extends JPanel implements ActionListener {
 
             }
             
+            
+            // Definir Score na tela.
+            g.setColor(Color.red);
+            g.setFont(new Font("Ink Free", Font.BOLD, 40));
+
+            FontMetrics metrics = getFontMetrics(g.getFont());
+
+            // Centralizar texto.
+            g.drawString("Pontuação: " + applesEaten, (SCREEN_WIDHT - metrics.stringWidth("Pontuação: " + applesEaten)) / 2, g.getFont().getSize());
+            
         }else{
             gameOver(g);
         }
@@ -224,6 +234,15 @@ public class GamePanel extends JPanel implements ActionListener {
      * @param g Desenhar o GameOver na tela.
      */
     public void gameOver(Graphics g){
+        
+        // Definir Score na tela.
+        g.setColor(Color.red);
+        g.setFont(new Font("Ink Free", Font.BOLD, 40));
+
+        FontMetrics metric = getFontMetrics(g.getFont());
+
+        // Centralizar texto.
+        g.drawString("Pontuação: " + applesEaten, (SCREEN_WIDHT - metric.stringWidth("Pontuação: " + applesEaten)) / 2, g.getFont().getSize());
         
         // Definir uma mensagem de GameOver.
         g.setColor(Color.red);
