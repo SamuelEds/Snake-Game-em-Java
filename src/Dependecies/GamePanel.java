@@ -80,12 +80,14 @@ public class GamePanel extends JPanel implements ActionListener {
     public void draw(Graphics g){
         
         if(running){
+            
+            /*
             for(int i = 0; i < (SCREEN_HEIGHT / UNIT_SIZE); i++){
 
                 g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
                 g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDHT, i * UNIT_SIZE);
 
-            }
+            }*/
 
             // Desenhar a maçã em um quadrado da tela.
             g.setColor(Color.red);
@@ -101,6 +103,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
                 }else{
                     g.setColor(new Color(45, 180, 0));
+                    
+                    // Gerar cores aleatórias.
+                    g.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
 
